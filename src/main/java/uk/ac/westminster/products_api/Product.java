@@ -1,5 +1,8 @@
 package uk.ac.westminster.products_api;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 public class Product {
     private long id;
     private String name;
