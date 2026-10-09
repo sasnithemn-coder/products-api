@@ -2,21 +2,22 @@ package uk.ac.westminster.products_api;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import java.util.ArrayList;
 
 public class Product {
-    private long id;
+    private Long id;
     private String name;
-    private double price;
+    private Double price;
 
     public Product() {}
 
-    public Product(long id, String name, double price) {
+    public Product(Long id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
