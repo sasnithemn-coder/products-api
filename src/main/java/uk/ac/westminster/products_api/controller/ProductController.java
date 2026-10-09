@@ -34,7 +34,7 @@ public class ProductController {
 
     @PostMapping
     public Product saveProduct(@RequestBody Product product) {
-            System.out.println(product);
+            products.add(product);
             return product;
     }
 }
