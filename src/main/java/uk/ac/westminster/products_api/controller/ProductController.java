@@ -35,6 +35,19 @@ public class ProductController {
     @PostMapping
     public Product saveProduct(@RequestBody Product product) {
             products.add(product);
+            System.out.println("Product added successfully");
             return product;
+    }
+
+    @DeleteMapping("/{id}")
+    public Product deleteProduct(@PathVariable Long id) {
+        for (Product product : products) {
+            if (product.getId().equals(id)) {
+                products.remove(product);
+                System.out.println("Product deleted Successfully");
+                return product;
+            }
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product not found");
     }
 }
