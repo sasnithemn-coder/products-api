@@ -1,53 +1,36 @@
 package uk.ac.westminster.products_api.controller;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import uk.ac.westminster.products_api.Product;
-import java.util.ArrayList;
+import uk.ac.westminster.products_api.services.ProductService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    ArrayList<Product> products = new ArrayList<>();
 
-    public ProductController() {
-        products.add(new Product(1L, "Laptop", 999.99));
-        products.add(new Product(2L, "Mouse", 19.99));
-        products.add(new Product(3L, "Keyboard", 59.99));
-    }
+    @Autowired
+    private ProductService productService;
 
     @GetMapping
-    public ArrayList<Product> getAllProducts() {
-            return products;
+    public List<Product> getAllProducts() {
+            return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {
-        for (Product product : products) {
-            if (product.getId().equals(id)) {
-                return product;
-            }
-        }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product not found");
+        return productService.getProductById(id).orElse(null);
     }
 
     @PostMapping
     public Product saveProduct(@RequestBody Product product) {
-            products.add(product);
-            System.out.println("Product added successfully");
-            return product;
+        return productService.saveProduct(product);
     }
 
     @DeleteMapping("/{id}")
-    public Product deleteProduct(@PathVariable Long id) {
-        for (Product product : products) {
-            if (product.getId().equals(id)) {
-                products.remove(product);
-                System.out.println("Product deleted Successfully");
-                return product;
-            }
-        }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Product not found");
+    public String deleteProduct(@PathVariable Long id) {
+        return productService.deleteProduct(id);
     }
+
 }
