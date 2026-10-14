@@ -23,6 +23,11 @@ public class ProductController {
         return productService.getProductById(id).orElse(null);
     }
 
+    @GetMapping("/name/{name}")
+    public Product getProductByName(@PathVariable String name) {
+        return productService.getProductByName(name).orElse(null);
+    }
+
     @PostMapping
     public Product saveProduct(@RequestBody Product product) {
         return productService.saveProduct(product);

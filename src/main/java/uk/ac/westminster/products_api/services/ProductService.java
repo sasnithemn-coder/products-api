@@ -20,6 +20,10 @@ public class ProductService {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst();
     }
 
+    public Optional<Product> getProductByName(String name) {
+        return products.stream().filter(p -> p.getName().equalsIgnoreCase(name)).findFirst();
+    }
+
     public Product saveProduct(Product product) {
         product.setId(nextId);
         nextId += 1L;
