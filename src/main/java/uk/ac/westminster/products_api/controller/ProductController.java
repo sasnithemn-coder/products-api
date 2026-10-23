@@ -2,7 +2,7 @@ package uk.ac.westminster.products_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uk.ac.westminster.products_api.Product;
+import uk.ac.westminster.products_api.dto.Product;
 import uk.ac.westminster.products_api.services.ProductService;
 import java.util.List;
 

@@ -1,8 +1,4 @@
-package uk.ac.westminster.products_api;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import java.util.ArrayList;
+package uk.ac.westminster.products_api.dto;
 
 public class Product {
     private Long id;
