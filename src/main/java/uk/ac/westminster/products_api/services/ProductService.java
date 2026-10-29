@@ -15,8 +15,9 @@ public class ProductService {
     private Long nextId = 1L;
 
     public ProductService() {
-        products.add(new DigitalProduct(nextId++, "E-book", 9.99, "/dl/1", 4.2));
-        products.add(new PhysicalProduct(nextId++, "Monitor", 249.99, 5.4, "60x40"));
+        //products.add(new Product(nextId++, "Mug", 8.50));
+        products.add(new DigitalProduct(nextId++, "E-book", 9.99, "/dl/2", 4.2));
+        products.add(new PhysicalProduct(nextId++, "Monitor", 249.99, 5.4, "60*40"));
     }
 
     public List<Product> getAllProducts() {
@@ -51,5 +52,9 @@ public class ProductService {
 
     public List <Product> getProductsByName(String name) {
         return products.stream().filter(p -> p.getName().toLowerCase().contains(name.toLowerCase())).toList();
+    }
+
+    public List <String> getAllSummaries() {
+        return products.stream().map(p -> p.getSummary()).toList();
     }
 }

@@ -1,8 +1,11 @@
 package uk.ac.westminster.products_api.dto;
 
-public class PhysicalProduct extends Product{
+import uk.ac.westminster.products_api.interfaces.Discountable;
+
+public class PhysicalProduct extends Product implements Discountable {
     private double weightKG;
     private String dimensions;
+    private double discountedPrice;
 
     public PhysicalProduct() {
 
@@ -28,5 +31,24 @@ public class PhysicalProduct extends Product{
 
     public void setDimensions(String dimensions) {
         this.dimensions = dimensions;
+    }
+
+    @Override
+    public String getSummary() {
+        return "Physical: Name: " + getName() + " | Price: " + getPrice() + " | Weight: " + weightKG + " | Dimensions: " + dimensions;
+    }
+
+    @Override
+    public void applyDiscount(double rate) {
+        double capped = Math.min(rate, 0.20);
+        discountedPrice = getPrice() * (1 - capped);
+    }
+
+    public double getDiscountedPrice() {
+        return discountedPrice;
+    }
+
+    public void setDiscountedPrice(double discountedPrice) {
+        this.discountedPrice = discountedPrice;
     }
 }
